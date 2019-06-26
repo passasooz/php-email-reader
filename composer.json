@@ -1,0 +1,18 @@
+{
+    "name": "francesco/php-email-reader",
+    "description": "This library provides some functions to manage email out of the box",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Francesco",
+            "email": "francescopassanante@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Handler\\": "src/"
+        }
+    }
+    "require": {}
+}
