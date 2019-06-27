@@ -14,7 +14,28 @@ Just copy this on your command line
 composer require passasooz/php-email-reader
 ```
 
-And enjoy!
+After succesfully installation of package create and index.php like this
+
+```
+<?php
+require_once './vendor/autoload.php';
+$handler = new \Handler\Handler();
+?>
+```
+
+Now you can access to different functions by $handler.
+
+Connect to IMAP
+```
+$handler->connect();
+```
+
+Get all e-mail
+```
+$handler->get_all();
+```
+
+Enjoy it :)
 
 ## Built With
 
