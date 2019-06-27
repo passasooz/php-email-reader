@@ -7,9 +7,8 @@ class Handler {
 	private $config;
 
 	public function __construct() {
-		$this->config = file_get_contents('./config/mail.php');
+		$this->config = include('./config/_mail.php');
 	}
-	//private $config = file_get_contents('../config/mail.php');
 
 	public function connect($host = null, $port = null, $protocol = null, $username = null, $password = null) {
 
@@ -21,21 +20,22 @@ class Handler {
 	private function _clean_body_msg($message = '') {
         $breaks = ['<br />','<br>','<br/>'];  
         $message = str_ireplace($breaks, "\r\n", $message);  
-        return strip_tags($message); //per sicurezza
+        return strip_tags($message);
     }
 
     public function get_all() {
-    	print_r($this->config);
-    	return $config;
-		$conn = self::connect($settings['host'], $settings['port'], $settings['protocol'], $settings['username'], $settings['password']);
+
+		$conn = self::connect($this->config['host'], $this->config['port'], $this->config['protocol'], $this->config['username'], $this->config['password']);
 
 		if(is_null($conn) || !is_resource($conn)) {
-			//ritorna errore connessione imap
+			echo 'Impossibile stabilire la connessione';
+			exit();
 		}
 
 		$emails = imap_search($conn, 'UNSEEN');
         if(!is_array($emails) || count($emails) <= 0){
-            //nessuna e-mail da leggere
+        	echo 'Nessuna email da leggere';
+        	exit();
         }
 		
 		rsort($emails);
@@ -52,9 +52,6 @@ class Handler {
 			$_email_date = strtotime($email_data->date);
 			$email_date = date('Y-m-d H:i:s', $_email_date);
 
-            echo '---------'.PHP_EOL;
-            echo $azienda_id_str.'Lettura Email da '.$email_from.' con oggetto "'.$email_data->subject.'" del '.$email_date.PHP_EOL;
-
             //1.1 TEXT/PLAIN - quoted_printable_decode
             $message = self::_clean_body_msg(imap_fetchbody($conn, $email_number, "1"));
             if(empty($message) || strlen($message) <= 0) {
@@ -64,8 +61,6 @@ class Handler {
             if(empty($message) || strlen($message) <= 0) {
                 $message = self::_clean_body_msg(imap_fetchbody($conn, $email_number, "1.2"));
             }
-
-			$_timestamp_email = strtotime($email_date);
 
             $mailbox = $headers->from[0]->mailbox;
             $domain_host = $headers->from[0]->host;
@@ -112,6 +107,13 @@ class Handler {
 					}
 				}
 			}
+			echo '=====================================<br>';
+			echo 'Number: '.$email_number.'<br>';
+			echo 'Subject: '.$email_subject.'<br>';
+			echo 'From: '.$email_from.' - '.$from_address.'<br>';
+			echo 'Size: '.$email_size.'<br>';
+			echo 'Date: '.$email_date.'<br>';
+			echo '=====================================<br>';
 		}
 		
 		imap_close($conn, CL_EXPUNGE);
