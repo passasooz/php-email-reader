@@ -11,7 +11,7 @@ Configure the array into config/mail.php with your data
 Just copy this on your command line
 
 ```
-composer require https://github.com/passasooz/php-email-reader
+composer require passasooz/php-email-reader
 ```
 
 And enjoy!
