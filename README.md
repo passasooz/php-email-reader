@@ -31,5 +31,5 @@ This project is licensed under the MIT License
 ## Acknowledgments
 
 * Valerio Giacomelli for inspiration
-* Me for the patience ;)
+* Me for patience ;)
 
