@@ -7,7 +7,7 @@ class Handler {
 	private $config;
 
 	public function __construct() {
-		$this->config = include('./config/_mail.php');
+		$this->config = include('./config/mail.php');
 	}
 
 	public function connect($host = null, $port = null, $protocol = null, $username = null, $password = null) {
