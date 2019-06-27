@@ -67,7 +67,7 @@ class Handler {
 
 			$from_address = $mailbox.'@'.$domain_host;
 
-			$structure = imap_fetchstructure($conn, $email_number);
+			/*$structure = imap_fetchstructure($conn, $email_number);
 			$attachments = [];
 			if(isset($structure->parts) && count($structure->parts) > 0) {
 				for($i = 0; $i < count($structure->parts); $i++) {
@@ -106,7 +106,7 @@ class Handler {
 						}
 					}
 				}
-			}
+			}*/
 			echo '=====================================<br>';
 			echo 'Number: '.$email_number.'<br>';
 			echo 'Subject: '.$email_subject.'<br>';
