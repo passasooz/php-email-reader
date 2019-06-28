@@ -1,5 +1,5 @@
 {
-    "name": "francesco/php-email-reader",
+    "name": "passasooz/php-email-reader",
     "description": "This library provides some functions to manage email out of the box",
     "type": "library",
     "license": "MIT",
