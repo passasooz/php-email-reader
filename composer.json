@@ -5,7 +5,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Francesco",
+            "name": "passasooz",
             "email": "francescopassanante@gmail.com"
         }
     ],
@@ -14,5 +14,7 @@
             "Handler\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "passasooz/php-email-reader": "1.0"
+    }
 }
