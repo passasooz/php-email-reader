@@ -14,5 +14,6 @@
             "Handler\\": "src/"
         }
     },
-    "require": {}
+    "require": {},
+    "minimum-stability": "dev"
 }
