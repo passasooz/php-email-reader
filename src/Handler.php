@@ -34,18 +34,27 @@ class Handler {
     }
 
     public function get_all() {
+    	$result = [
+    		'status'		=> false,
+    		'message'		=> '',
+    		'emails'		=> ''
+    	];
 
 		$conn = self::connect($this->config['host'], $this->config['port'], $this->config['protocol'], $this->config['username'], $this->config['password']);
 
 		if(is_null($conn) || !is_resource($conn)) {
-			echo 'Impossibile stabilire la connessione';
-			exit();
+			$result['message'] = 'Impossibile stabilire la connessione';
+			return $result;
+			/*echo 'Impossibile stabilire la connessione';
+			exit();*/
 		}
 
 		$emails = imap_search($conn, 'UNSEEN');
         if(!is_array($emails) || count($emails) <= 0){
-        	echo 'Nessuna email da leggere';
-        	exit();
+        	$result['message'] = 'Nessuna email da leggere';
+        	return $result;
+        	/*echo 'Nessuna email da leggere';
+        	exit();*/
         }
 		
 		rsort($emails);
@@ -117,15 +126,31 @@ class Handler {
 					}
 				}
 			}*/
-			echo '=====================================<br>';
+
+			$result['emails'][$email_number] = [
+				'number'			=> $email_number,
+				'subject'			=> $email_subject,
+				'from'				=> $email_from,
+				'address'			=> $from_address,
+				'size'				=> $email_size,
+				'date'				=> $email_date
+			];
+			/*echo '=====================================<br>';
 			echo 'Number: '.$email_number.'<br>';
 			echo 'Subject: '.$email_subject.'<br>';
 			echo 'From: '.$email_from.' - '.$from_address.'<br>';
 			echo 'Size: '.$email_size.'<br>';
 			echo 'Date: '.$email_date.'<br>';
-			echo '=====================================<br>';
+			echo '=====================================<br>';*/
 		}
 		
-		return self::disconnect($conn, true);
+		if(!self::disconnect($conn, true)) {
+			$result['message'] = 'Errore durante la disconnessione IMAP';
+			return $result;
+		}
+
+		$result['status'] = true;
+		$result['message'] = 'Hai '.count($result['emails']).' e-mail da leggere';
+		return $result;
 	}
 }
