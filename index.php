@@ -13,7 +13,7 @@ $response = $handler->get_all();
 ?>
 
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,7 +25,7 @@ $response = $handler->get_all();
         <meta http-equiv="Expires" content="-1">
 
         <meta name="author" content="Francesco Passanante">
-        <meta name="description" content="A little IMAP reader for collect your e-mail messages in your web application">
+        <meta name="description" content="A little IMAP reader for collect your unseen e-mail messages in your web application">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
