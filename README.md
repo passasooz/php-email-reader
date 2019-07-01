@@ -8,22 +8,11 @@ Configure the array into config/mail.php with your data
 
 ### Installing
 
-Just copy this on your command line
+Just paste this on your command line
 
 ```
 composer require passasooz/php-email-reader
 ```
-
-After succesfully installation of package create and index.php like this
-
-```
-<?php
-require_once './vendor/autoload.php';
-$handler = new \Handler\Handler();
-?>
-```
-
-Now you can access to different functions by $handler.
 
 Connect to IMAP
 ```

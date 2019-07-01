@@ -17,6 +17,16 @@ class Handler {
 		return imap_open("{".$host.":".$port."/imap/".$protocol."/novalidate-cert}INBOX", $username, $password);
 	}
 
+	public function disconnect($connection = null, $is_expunge = false) {
+		if(is_null($connection)) return false;
+
+		if($is_expunge) {
+			return imap_close($connection, CL_EXPUNGE);
+		}
+		
+		return imap_close($connection);
+	}
+
 	private function _clean_body_msg($message = '') {
         $breaks = ['<br />','<br>','<br/>'];  
         $message = str_ireplace($breaks, "\r\n", $message);  
@@ -116,7 +126,6 @@ class Handler {
 			echo '=====================================<br>';
 		}
 		
-		imap_close($conn, CL_EXPUNGE);
-
+		return self::disconnect($conn, true);
 	}
 }
