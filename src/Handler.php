@@ -45,16 +45,12 @@ class Handler {
 		if(is_null($conn) || !is_resource($conn)) {
 			$result['message'] = 'Impossibile stabilire la connessione';
 			return $result;
-			/*echo 'Impossibile stabilire la connessione';
-			exit();*/
 		}
 
 		$emails = imap_search($conn, 'UNSEEN');
         if(!is_array($emails) || count($emails) <= 0){
         	$result['message'] = 'Nessuna email da leggere';
         	return $result;
-        	/*echo 'Nessuna email da leggere';
-        	exit();*/
         }
 		
 		rsort($emails);
@@ -66,8 +62,8 @@ class Handler {
 			$email_number;
 			$email_data = reset($overview);
 			$email_subject = $email_data->subject;
-			$email_from = $email_data->from; //non la sto usando ma teniamola qui
-			$email_size = $email_data->size; //non la sto usando ma teniamola qui
+			$email_from = $email_data->from;
+			$email_size = $email_data->size;
 			$_email_date = strtotime($email_data->date);
 			$email_date = date('Y-m-d H:i:s', $_email_date);
 
@@ -135,13 +131,6 @@ class Handler {
 				'size'				=> $email_size,
 				'date'				=> $email_date
 			];
-			/*echo '=====================================<br>';
-			echo 'Number: '.$email_number.'<br>';
-			echo 'Subject: '.$email_subject.'<br>';
-			echo 'From: '.$email_from.' - '.$from_address.'<br>';
-			echo 'Size: '.$email_size.'<br>';
-			echo 'Date: '.$email_date.'<br>';
-			echo '=====================================<br>';*/
 		}
 		
 		if(!self::disconnect($conn, true)) {
