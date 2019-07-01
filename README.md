@@ -14,12 +14,34 @@ Just paste this on your command line
 composer require passasooz/php-email-reader
 ```
 
-Connect to IMAP
+Configure config/mail.php with your imap data (for example)
 ```
-$handler->connect();
+return [
+
+    'host' => '', //YOUR IMAP imap.gmail.com
+
+    'port' => 993, //YOUR PORT 993
+
+    'username' => '', //YOUR EMAIL francescopassanante@gmail.com
+
+    'password' => '', //YOUR PASSWORD 123asd456qwe
+
+    'protocol' => '' //YOUR PROTOCOL ssl
+
+];
 ```
 
-Get all e-mail
+Connect to IMAP
+```
+$handler->connect($host, $port, $protocol, $username, $password);
+```
+
+Disconnect from IMAP (require a $connection variable returned by connection to imap)
+```
+$handler->disconnect($connection);
+```
+
+Get all e-mail (return an array with status, message and emails)
 ```
 $handler->get_all();
 ```

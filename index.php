@@ -7,9 +7,9 @@ Require handler file
 ************************************************/
 
 require_once './src/Handler.php';
-$h = new \Handler\Handler();
+$handler = new \Handler\Handler();
 
-$response = $h->get_all();
+$response = $handler->get_all();
 
 ?>
 
