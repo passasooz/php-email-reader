@@ -6,15 +6,14 @@ class Handler {
 
     private $config;
 
-    public function __construct($_config) {
-        $this->config = $_config;//include('./config/mail.php');
+    public function __construct() {
+        $this->config = include('./config/mail.php');
     }
 
-    public function connect($config_data = null/*$host = null, $port = null, $protocol = null, $username = null, $password = null*/) {
-        if(!is_null($config_data) || !is_array($config_data) || count($config_data) <= 0) return null;
-        //if(strlen($host) <= 0 || is_null($host) || !is_numeric($port) || is_null($port) || strlen($protocol) <= 0 || is_null($protocol) || strlen($username) <= 0 || is_null($username) || strlen($password) <= 0 || is_null($password)) return null;
+    public function connect() {
+        if(!is_array($this->config) || count($this->config) <= 0 || !isset($this->config['host']) || !isset($this->config['port']) || !isset($this->config['protocol']) || !isset($this->config['username']) || !isset($this->config['password'])) return null;
 
-        return imap_open("{".$config_data['host'].":".$config_data['port']."/imap/".$config_data['protocol']."/novalidate-cert}INBOX", $config_data['username'], $config_data['password']);
+        return imap_open("{".$this->config['host'].":".$this->config['port']."/imap/".$this->config['protocol']."/novalidate-cert}INBOX", $this->config['username'], $this->config['password']);
     }
 
     public function disconnect($connection = null, $is_expunge = false) {
@@ -40,7 +39,7 @@ class Handler {
             'emails'        => ''
         ];
 
-        $conn = self::connect($this->config);//$this->config['host'], $this->config['port'], $this->config['protocol'], $this->config['username'], $this->config['password']);
+        $conn = self::connect();
 
         if(is_null($conn) || !is_resource($conn)) {
             $result['message'] = 'Impossibile stabilire la connessione';
@@ -122,6 +121,9 @@ class Handler {
                     }
                 }
             }*/
+
+
+
 
             $result['emails'][$email_number] = [
                 'number'            => $email_number,

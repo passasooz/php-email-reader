@@ -6,7 +6,7 @@ Require handler file
 *************************************************
 ************************************************/
 require_once './src/Handler.php';
-$handler = new \Handler\Handler(include('config/mail.php'));
+$handler = new \Handler\Handler();
 
 $response = $handler->get_all();
 

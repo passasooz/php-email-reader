@@ -1,6 +1,6 @@
 # php-email-reader
 
-A little IMAP reader for collect your e-mail messages in your web application
+A little IMAP reader for collect your unseen e-mail messages in your web application
 
 ## Getting Started
 
@@ -31,11 +31,15 @@ return [
 ];
 ```
 
-To assign Handler Class to a variable ($handler) check index.php of library!
+Example of usage in your php file
+```
+require_once 'path/to/Handler.php';
+$handler = new \Handler\Handler();
+```
 
 Connect to IMAP
 ```
-$handler->connect($host, $port, $protocol, $username, $password);
+$handler->connect();
 ```
 
 Disconnect from IMAP (require a $connection variable returned by connection to imap)
@@ -43,7 +47,7 @@ Disconnect from IMAP (require a $connection variable returned by connection to i
 $handler->disconnect($connection);
 ```
 
-Get all e-mail (return an array with status, message and emails)
+Get all unseen e-mail (return an array with status, message and emails)
 ```
 $handler->get_all();
 ```
