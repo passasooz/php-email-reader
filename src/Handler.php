@@ -42,13 +42,13 @@ class Handler {
         $conn = self::connect();
 
         if(is_null($conn) || !is_resource($conn)) {
-            $result['message'] = 'Impossibile stabilire la connessione';
+            $result['message'] = 'The connection could not be verified';
             return $result;
         }
 
         $emails = imap_search($conn, 'UNSEEN');
         if(!is_array($emails) || count($emails) <= 0){
-            $result['message'] = 'Nessuna email da leggere';
+            $result['message'] = 'No unseen emails';
             return $result;
         }
         
@@ -136,12 +136,12 @@ class Handler {
         }
         
         if(!self::disconnect($conn, true)) {
-            $result['message'] = 'Errore durante la disconnessione IMAP';
+            $result['message'] = 'Error on IMAP disconnect';
             return $result;
         }
 
         $result['status'] = true;
-        $result['message'] = 'Hai '.count($result['emails']).' e-mail da leggere';
+        $result['message'] = count($result['emails']).' e-mail to read';
         return $result;
     }
 }
