@@ -8,7 +8,7 @@ Require handler file
 require_once './src/Handler.php';
 $handler = new \Handler\Handler();
 
-$response = $handler->get_all();
+$response = $handler->showAll();
 
 ?>
 

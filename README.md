@@ -49,7 +49,7 @@ $handler->disconnect($connection);
 
 Get all unseen e-mail (return an array with status, message and emails)
 ```
-$handler->get_all();
+$handler->showAll();
 ```
 
 Enjoy it :)
