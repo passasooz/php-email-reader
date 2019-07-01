@@ -42,7 +42,6 @@ $response = $handler->get_all();
                     <th scope="col">From - Address</th>
                     <th scope="col">Size</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +52,6 @@ $response = $handler->get_all();
                     <td><?php echo $key['from'].' - '.$key['address'];?></td>
                     <td><?php echo $key['size'];?></td>
                     <td><?php echo $key['date'];?></td>
-                    <td><i class="far fa-trash-alt"></i></td>
                 </tr>
             <?php } ?>
             </tbody>
