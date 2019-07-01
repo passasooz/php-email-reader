@@ -31,6 +31,8 @@ return [
 ];
 ```
 
+To assign Handler Class to a variable ($handler) check index.php of library!
+
 Connect to IMAP
 ```
 $handler->connect($host, $port, $protocol, $username, $password);
