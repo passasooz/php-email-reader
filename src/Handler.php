@@ -32,13 +32,12 @@ class Handler {
         return strip_tags($message);
     }
 
-    public function showAll() {
+    protected function getEmails($criteria = 'ALL') {
         $result = [
             'status'        => false,
             'message'       => '',
             'emails'        => ''
         ];
-
 
         $conn = $this->connect();
 
@@ -47,9 +46,9 @@ class Handler {
             return $result;
         }
 
-        $emails = imap_search($conn, 'UNSEEN');
+        $emails = imap_search($conn, $criteria);
         if(!is_array($emails) || count($emails) <= 0){
-            $result['message'] = 'No unseen e-mails';
+            $result['message'] = 'No e-mails';
             return $result;
         }
         
@@ -97,7 +96,23 @@ class Handler {
         }
 
         $result['status'] = true;
-        $result['message'] = count($result['emails']).' unseen e-mails';
+        $result['message'] = count($result['emails']).' e-mails';
         return $result;
+    }
+
+    public function all() {
+        return $this->getEmails();
+    }
+
+    public function unseen() {
+        return $this->getEmails('UNSEEN');
+    }
+
+    public function seen() {
+        return $this->getEmails('SEEN');
+    }
+
+    public function deleted() {
+        return $this->getEmails('DELETED');
     }
 }

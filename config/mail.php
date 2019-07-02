@@ -2,14 +2,14 @@
 
 return [
 
-    'host' => '', //YOUR IMAP imap.gmail.com
+    'host' => 'imap.gmail.com',
 
-    'port' => 993, //YOUR PORT 993
+    'port' => 993,
 
-    'username' => '', //YOUR EMAIL francescopassanante@gmail.com
+    'username' => 'kairosbianchi@gmail.com',
 
-    'password' => '', //YOUR PASSWORD 123asd456qwe
+    'password' => 'kairosbianchi_123',
 
-    'protocol' => '' //YOUR PROTOCOL ssl
+    'protocol' => 'ssl'
 
 ];

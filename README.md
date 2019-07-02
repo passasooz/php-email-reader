@@ -47,9 +47,42 @@ Disconnect from IMAP (require a $connection variable returned by connection to i
 $handler->disconnect($connection);
 ```
 
-Get all unseen e-mail (return an array with status, message and emails)
+Get all e-mail
 ```
-$handler->showAll();
+$handler->all();
+```
+
+Get unseen e-mail
+```
+$handler->unseen();
+```
+
+Get seen e-mail
+```
+$handler->seen();
+```
+
+Get deleted e-mail
+```
+$handler->deleted();
+```
+
+To customize type of e-mail what you want to return:
+
+* **read criteria** - https://www.php.net/manual/en/function.imap-search.php 
+* **extends Handler**
+* **create function in your new Class** - for example
+```
+class Customize extends Handler {
+	public function answered() {
+		return $this->getEmails('ANSWERED');
+	}
+}
+``` 
+* ***instance new class into a variable (i.e. $customize)***
+* ***just call***
+```
+$customize->answered();
 ```
 
 Enjoy it :)
