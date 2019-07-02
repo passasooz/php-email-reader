@@ -39,6 +39,7 @@ class Handler {
             'emails'        => ''
         ];
 
+
         $conn = $this->connect();
 
         if(is_null($conn) || !is_resource($conn)) {
@@ -48,7 +49,7 @@ class Handler {
 
         $emails = imap_search($conn, 'UNSEEN');
         if(!is_array($emails) || count($emails) <= 0){
-            $result['message'] = 'No unseen emails';
+            $result['message'] = 'No unseen e-mails';
             return $result;
         }
         
@@ -80,7 +81,7 @@ class Handler {
 
             $from_address = $mailbox.'@'.$domain_host;
 
-            $result['emails'][$email_number] = [
+            $result['emails'][$email_number] = (object)[
                 'number'            => $email_number,
                 'subject'           => $email_subject,
                 'from'              => $email_from,
@@ -96,7 +97,7 @@ class Handler {
         }
 
         $result['status'] = true;
-        $result['message'] = count($result['emails']).' e-mail to read';
+        $result['message'] = count($result['emails']).' unseen e-mails';
         return $result;
     }
 }

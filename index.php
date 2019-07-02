@@ -9,7 +9,6 @@ require_once './src/Handler.php';
 $handler = new \Handler\Handler();
 
 $response = $handler->showAll();
-
 ?>
 
 <!DOCTYPE html>
@@ -47,11 +46,11 @@ $response = $handler->showAll();
             <tbody>
             <?php foreach($response['emails'] as $index => $key) { ?>
                 <tr>
-                    <th scope="row"><?php echo $key['number'];?></th>
-                    <td><?php echo $key['subject'];?></td>
-                    <td><?php echo $key['from'].' - '.$key['address'];?></td>
-                    <td><?php echo $key['size'];?></td>
-                    <td><?php echo $key['date'];?></td>
+                    <th scope="row"><?php echo $key->number;?></th>
+                    <td><?php echo $key->subject;?></td>
+                    <td><?php echo $key->from.' - '.$key->address;?></td>
+                    <td><?php echo $key->size;?></td>
+                    <td><?php echo $key->date;?></td>
                 </tr>
             <?php } ?>
             </tbody>
