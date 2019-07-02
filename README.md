@@ -67,7 +67,7 @@ Get deleted e-mail
 $handler->deleted();
 ```
 
-To customize type of e-mail what you want to return:
+To customize type of e-mail what you want list:
 
 * **read criteria** - https://www.php.net/manual/en/function.imap-search.php 
 * **extends Handler**
@@ -79,8 +79,8 @@ class Customize extends Handler {
 	}
 }
 ``` 
-* ***instance new class into a variable (i.e. $customize)***
-* ***just call***
+* **instance new class into a variable (i.e. $customize)**
+* **just call**
 ```
 $customize->answered();
 ```
