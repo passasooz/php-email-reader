@@ -57,13 +57,13 @@ class Handler {
             $headers = imap_header($conn, $email_number);
 
             $overview = imap_fetch_overview($conn, $email_number, 0);
-
             $email_data = reset($overview);
             $email_subject = $email_data->subject;
             $email_from = $email_data->from;
             $email_size = $email_data->size;
             $_email_date = strtotime($email_data->date);
             $email_date = date('Y-m-d H:i:s', $_email_date);
+            $email_is_seen = $email_data->seen;
 
             //1.1 TEXT/PLAIN - quoted_printable_decode
             $message = $this->cleanBodyMsg(imap_fetchbody($conn, $email_number, "1"));
@@ -86,8 +86,13 @@ class Handler {
                 'from'              => $email_from,
                 'address'           => $from_address,
                 'size'              => $email_size,
-                'date'              => $email_date
+                'date'              => $email_date,
+                'seen'              => $email_is_seen
             ];
+
+            if(!$email_is_seen) {
+                imap_clearflag_full($conn, $email_number, "\\Seen");
+            }
         }
         
         if(!$this->disconnect($conn, true)) {

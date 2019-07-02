@@ -1,6 +1,6 @@
 # php-email-reader
 
-A little IMAP reader for collect your unseen e-mail messages in your web application
+A little IMAP reader for collect your e-mail messages in your web application
 
 ## Getting Started
 

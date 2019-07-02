@@ -24,7 +24,7 @@ $response = $handler->all();
         <meta http-equiv="Expires" content="-1">
 
         <meta name="author" content="Francesco Passanante">
-        <meta name="description" content="A little IMAP reader for collect your unseen e-mail messages in your web application">
+        <meta name="description" content="A little IMAP reader for collect your e-mail messages in your web application">
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
@@ -41,16 +41,18 @@ $response = $handler->all();
                     <th scope="col">From - Address</th>
                     <th scope="col">Size</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Status</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach($response['emails'] as $index => $key) { ?>
-                <tr>
+                <tr class="<?php echo $key->seen ? 'bg-light' : 'bg-white';?> text-dark">
                     <th scope="row"><?php echo $key->number;?></th>
                     <td><?php echo $key->subject;?></td>
                     <td><?php echo $key->from.' - '.$key->address;?></td>
                     <td><?php echo $key->size;?></td>
                     <td><?php echo $key->date;?></td>
+                    <td><i class="far fa-envelope<?php echo $key->seen ? '-open' : '';?>"></i></td>
                 </tr>
             <?php } ?>
             </tbody>
